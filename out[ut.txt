@@ -1,0 +1,122 @@
+ python train_cnn.py
+2025-09-05 22:13:00.440881: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-09-05 22:13:15.922276: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Starting Titanic CNN Training...
+Downloading Titanic dataset...
+Dataset loaded: (891, 12)
+Preprocessing data...
+Features: ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'FamilySize', 'IsAlone']
+Data shape: X=(891, 9), y=(891,)
+Training set: (712, 9)
+Test set: (179, 9)
+Building 1D CNN model...
+C:\Users\AADI JAIN\AppData\Roaming\Python\Python313\site-packages\keras\src\layers\reshaping\reshape.py:39: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+2025-09-05 22:13:19.886918: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model Architecture:
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Layer (type)                   ┃ Output Shape           ┃      Param # ┃    
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩    
+│ reshape (Reshape)              │ (None, 9, 1)           │            0 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ conv1d (Conv1D)                │ (None, 9, 64)          │          256 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ batch_normalization            │ (None, 9, 64)          │          256 │    
+│ (BatchNormalization)           │                        │              │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dropout (Dropout)              │ (None, 9, 64)          │            0 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ conv1d_1 (Conv1D)              │ (None, 9, 128)         │       24,704 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ batch_normalization_1          │ (None, 9, 128)         │          512 │    
+│ (BatchNormalization)           │                        │              │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dropout_1 (Dropout)            │ (None, 9, 128)         │            0 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ conv1d_2 (Conv1D)              │ (None, 9, 64)          │       24,640 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ batch_normalization_2          │ (None, 9, 64)          │          256 │    
+│ (BatchNormalization)           │                        │              │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ global_average_pooling1d       │ (None, 64)             │            0 │    
+│ (GlobalAveragePooling1D)       │                        │              │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dense (Dense)                  │ (None, 128)            │        8,320 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dropout_2 (Dropout)            │ (None, 128)            │            0 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dense_1 (Dense)                │ (None, 64)             │        8,256 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dropout_3 (Dropout)            │ (None, 64)             │            0 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dense_2 (Dense)                │ (None, 32)             │        2,080 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dropout_4 (Dropout)            │ (None, 32)             │            0 │    
+├────────────────────────────────┼────────────────────────┼──────────────┤    
+│ dense_3 (Dense)                │ (None, 1)              │           33 │    
+└────────────────────────────────┴────────────────────────┴──────────────┘    
+ Total params: 69,313 (270.75 KB)
+ Trainable params: 68,801 (268.75 KB)
+ Non-trainable params: 512 (2.00 KB)
+Training model...
+Epoch 1/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 5s 40ms/step - accuracy: 0.6169 - loss: 0.6537 - val_accuracy: 0.5944 - val_loss: 0.6696 - learning_rate: 0.0010
+Epoch 2/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 14ms/step - accuracy: 0.6819 - loss: 0.5962 - val_accuracy: 0.5944 - val_loss: 0.6502 - learning_rate: 0.0010
+Epoch 3/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 15ms/step - accuracy: 0.7135 - loss: 0.5795 - val_accuracy: 0.5944 - val_loss: 0.6615 - learning_rate: 0.0010
+Epoch 4/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 13ms/step - accuracy: 0.7417 - loss: 0.5483 - val_accuracy: 0.5944 - val_loss: 0.6780 - learning_rate: 0.0010
+Epoch 5/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 14ms/step - accuracy: 0.7469 - loss: 0.5270 - val_accuracy: 0.5944 - val_loss: 0.7182 - learning_rate: 0.0010
+Epoch 6/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 12ms/step - accuracy: 0.7873 - loss: 0.4916 - val_accuracy: 0.5944 - val_loss: 0.7011 - learning_rate: 0.0010
+Epoch 7/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 13ms/step - accuracy: 0.7786 - loss: 0.4983 - val_accuracy: 0.5944 - val_loss: 0.7051 - learning_rate: 0.0010
+Epoch 8/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 15ms/step - accuracy: 0.7803 - loss: 0.4926 - val_accuracy: 0.5944 - val_loss: 0.7375 - learning_rate: 5.0000e-04
+Epoch 9/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 12ms/step - accuracy: 0.8084 - loss: 0.4599 - val_accuracy: 0.5944 - val_loss: 0.7396 - learning_rate: 5.0000e-04
+Epoch 10/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 15ms/step - accuracy: 0.8155 - loss: 0.4375 - val_accuracy: 0.5944 - val_loss: 0.7167 - learning_rate: 5.0000e-04
+Epoch 11/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 16ms/step - accuracy: 0.7873 - loss: 0.4430 - val_accuracy: 0.5944 - val_loss: 0.7422 - learning_rate: 5.0000e-04
+Epoch 12/50
+18/18 ━━━━━━━━━━━━━━━━━━━━ 0s 12ms/step - accuracy: 0.7996 - loss: 0.4822 - val_accuracy: 0.5944 - val_loss: 0.7156 - learning_rate: 5.0000e-04
+Evaluating model...
+6/6 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step 
+Test Accuracy: 0.6145
+Test Accuracy Percentage: 61.45%
+Classification Report:
+C:\Users\AADI JAIN\AppData\Roaming\Python\Python313\site-packages\sklearn\metrics\_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])  
+C:\Users\AADI JAIN\AppData\Roaming\Python\Python313\site-packages\sklearn\metrics\_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])  
+C:\Users\AADI JAIN\AppData\Roaming\Python\Python313\site-packages\sklearn\metrics\_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])  
+              precision    recall  f1-score   support
+
+Not Survived       0.61      1.00      0.76       110
+    Survived       0.00      0.00      0.00        69
+
+    accuracy                           0.61       179
+   macro avg       0.31      0.50      0.38       179
+weighted avg       0.38      0.61      0.47       179
+
+Saving model...
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+============================================================
+TITANIC CNN TRAINING COMPLETED!
+============================================================
+Final Test Accuracy: 0.6145 (61.45%)
+Model saved as: titanic_cnn_model.h5
+Training completed successfully!
+============================================================
+Sample Prediction:
+Testing with a sample passenger...
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 67ms/step
+Sample passenger (1st class female, age 25): 0.3833 probability of survival   
+Prediction: NOT SURVIVED
+All done! Your CNN model is ready to use!
