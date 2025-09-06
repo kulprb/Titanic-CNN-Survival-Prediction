@@ -1,0 +1,39 @@
+Test Accuracy: 0.7486
+Test Accuracy Percentage: 74.86%
+
+Detailed Classification Report:
+              precision    recall  f1-score   support
+
+Not Survived       0.75      0.89      0.81       110
+    Survived       0.75      0.52      0.62        69
+
+    accuracy                           0.75       179
+   macro avg       0.75      0.71      0.71       179
+weighted avg       0.75      0.75      0.74       179
+
+
+Confusion Matrix:
+[[98 12]
+ [33 36]]
+
+Additional Metrics:
+AUC-ROC: 0.8018
+Precision: 0.7500
+Recall: 0.5217
+F1-Score: 0.6154
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+============================================================
+ENHANCED TITANIC CNN TRAINING COMPLETED!
+============================================================
+Final Test Accuracy: 0.7486 (74.86%)
+AUC-ROC Score: 0.8018
+Enhanced model saved as: enhanced_titanic_cnn_model.h5
+============================================================
+
+Enhanced Sample Predictions:
+1st class female, age 25: 0.6582 -> SURVIVED
+3rd class male, age 30: 0.2651 -> NOT SURVIVED
+2nd class female with family, age 35: 0.4843 -> NOT SURVIVED
+1st class male, age 40: 0.4120 -> NOT SURVIVED
+
+Model training completed successfully!
